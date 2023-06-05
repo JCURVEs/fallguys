@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vane : MonoBehaviour
 {
-    float rotationSpeed = 100;
+    public float rotationSpeed = 100;
 
     // Start is called before the first frame update
     void Start()

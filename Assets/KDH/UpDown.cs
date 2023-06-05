@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpDown : MonoBehaviour
 {
-    float speed = 5;
+    public float speed = 5;
     float currTime = 0;
     float moveTime = 2;
     bool bUp = true;
