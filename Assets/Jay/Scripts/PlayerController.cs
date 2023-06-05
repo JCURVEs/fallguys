@@ -1,15 +1,15 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // ÀÌµ¿ ¼Óµµ
-    public float jumpForce = 5f; // Á¡ÇÁ Èû
-    public float gravity = -9.81f; // Áß·Â °¡¼Óµµ
+    public float moveSpeed = 5f; // ì´ë™ ì†ë„
+    public float jumpForce = 5f; // ì í”„ í˜
+    public float gravity = -9.81f; // ì¤‘ë ¥ ê°€ì†ë„
 
 
     private CharacterController characterController;
     private Vector3 moveDirection;
-    private bool isJumping;
+    private bool isJumping = false;
     private float verticalVelocity = 0f;
 
     private void Start()
