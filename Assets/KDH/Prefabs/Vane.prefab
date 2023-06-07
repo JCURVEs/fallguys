@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 1840326653598180241}
   - component: {fileID: 325989611018683842}
   - component: {fileID: -2171241848904582914}
+  - component: {fileID: 5474770627357642596}
   m_Layer: 0
   m_Name: Vane
   m_TagString: Untagged
@@ -309,3 +310,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44bb7b653710c84ca45b4f2dcb24711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 0
+--- !u!114 &5474770627357642596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102447899511686775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ab117b5a794e646828d75f500d9268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 100
+  stunTime: 0.5
