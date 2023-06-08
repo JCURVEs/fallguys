@@ -28,7 +28,7 @@ public class KDH_Enemy : MonoBehaviour
         {
             if(!bJumping)
             {
-                transform.position += transform.up * speed * Time.deltaTime;
+                transform.position += transform.up * 5 * Time.deltaTime;
             }
         }
         currTime = 0;
