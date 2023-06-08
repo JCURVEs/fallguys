@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // 이동 속도
+    public float moveSpeed = 10f; // 이동 속도
     public float rotationSpeed = 180f; // 회전 속도
-    public float jumpForce = 5f; // 점프 힘
+    public float jumpForce = 10f; // 점프 힘
     public float gravity = -9.81f; // 중력 가속도
 
     public GameObject rotationObject;
@@ -33,50 +33,67 @@ public class PlayerController : MonoBehaviour
         moveDirection.Normalize();
         moveDirection *= moveSpeed;
 
-        // 플레이어가 a를 누르면 캡슐의 로테이션 속성 y가 -90
         if (Input.GetKeyDown(KeyCode.A))
-        {
-            Quaternion rotation = Quaternion.Euler(0f, -90f, 0f);
-            rotationObject.transform.rotation = rotation;
-            print("button : a");
-        }
-        // 플레이어가 d를 누르면 캡슐의 로테이션 y가 90
+            rotationObject.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
         else if (Input.GetKeyDown(KeyCode.D))
-        {
-            Quaternion rotation = Quaternion.Euler(0f, 90f, 0f);
-            rotationObject.transform.rotation = rotation;
-            print("button : d");
-        }
-        // 플레이어가 s를 누르면 캡슐의 로테이션 y가 180
+            rotationObject.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
         else if (Input.GetKeyDown(KeyCode.S))
-        {
-            Quaternion rotation = Quaternion.Euler(0f, 180f, 0f);
-            rotationObject.transform.rotation = rotation;
-            print("button : s");
-        }
+            rotationObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else if (Input.GetKeyDown(KeyCode.W))
         {
-            Quaternion rotation = Quaternion.Euler(0f, 0f, 0f);
-            rotationObject.transform.rotation = rotation;
+            if (Input.GetKeyDown(KeyCode.A))
+                rotationObject.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
+            else if (Input.GetKeyDown(KeyCode.D))
+                rotationObject.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
+            else
+                rotationObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
-        else if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.A))
-        {
-            Quaternion rotation = Quaternion.Euler(0f, -45f, 0f);
-            rotationObject.transform.rotation = rotation;
-        }
-        else if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.D))
-        {
-            Quaternion rotation = Quaternion.Euler(0f, 45f, 0f);
-            rotationObject.transform.rotation = rotation;
-        }
-   
+
+
+        //// 플레이어가 a를 누르면 캡슐의 로테이션 속성 y가 -90
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    Quaternion rotation = Quaternion.Euler(0f, -90f, 0f);
+        //    rotationObject.transform.rotation = rotation;
+        //    print("button : a");
+        //}
+        //// 플레이어가 d를 누르면 캡슐의 로테이션 y가 90
+        //else if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    Quaternion rotation = Quaternion.Euler(0f, 90f, 0f);
+        //    rotationObject.transform.rotation = rotation;
+        //    print("button : d");
+        //}
+        //// 플레이어가 s를 누르면 캡슐의 로테이션 y가 180
+        //else if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    Quaternion rotation = Quaternion.Euler(0f, 180f, 0f);
+        //    rotationObject.transform.rotation = rotation;
+        //    print("button : s");
+        //}
+        //else if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    Quaternion rotation = Quaternion.Euler(0f, 0f, 0f);
+        //    rotationObject.transform.rotation = rotation;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.A))
+        //{
+        //    Quaternion rotation = Quaternion.Euler(0f, -45f, 0f);
+        //    rotationObject.transform.rotation = rotation;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.D))
+        //{
+        //    Quaternion rotation = Quaternion.Euler(0f, 45f, 0f);
+        //    rotationObject.transform.rotation = rotation;
+        //}
+
         if (characterController.isGrounded)
         {
             isJumping = false;
 
             if (Input.GetButtonDown("Jump"))
             {
-                verticalVelocity = jumpForce;
+                verticalVelocity += jumpForce;
             }
             else
             {

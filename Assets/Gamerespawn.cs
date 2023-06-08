@@ -10,7 +10,7 @@ public class Gamerespawn : MonoBehaviour
     {
         if(transform.position.y < threshold)
         {
-            transform.position = new Vector3(0f,1.5f, 0f);
+            transform.position = new Vector3(0f,10f, 0f);
         }
     }
     // Start is called before the first frame update
