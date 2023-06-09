@@ -1,21 +1,23 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform target; // µû¶ó°¥ ´ë»ó Ä³¸¯ÅÍÀÇ Transform ÄÄÆ÷³ÍÆ®
+    public Transform target; // ë”°ë¼ê°ˆ ëŒ€ìƒ ìºë¦­í„°ì˜ Transform ì»´í¬ë„ŒíŠ¸
 
-    public float smoothSpeed = 0.125f; // Ä«¸Ş¶ó ÀÌµ¿ ¼Óµµ
+    public float smoothSpeed = 0.125f; // ì¹´ë©”ë¼ ì´ë™ ì†ë„
 
-    public Vector3 offset; // Ä«¸Ş¶ó¿Í ´ë»ó Ä³¸¯ÅÍ °£ÀÇ °Å¸® Á¶Àı
+    public Vector3 offset; // ì¹´ë©”ë¼ì™€ ëŒ€ìƒ ìºë¦­í„° ê°„ì˜ ê±°ë¦¬ ì¡°ì ˆ
 
     private void LateUpdate()
     {
-        Vector3 desiredPosition = target.position + offset; // ´ë»ó Ä³¸¯ÅÍ À§Ä¡¿¡ offsetÀ» ´õÇÑ À§Ä¡
-
-        // SmoothDamp ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© ÇöÀç À§Ä¡¿¡¼­ ¸ñÇ¥ À§Ä¡·Î ºÎµå·´°Ô ÀÌµ¿
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.position = smoothedPosition;
+        if(target)
+        {
+            Vector3 desiredPosition = target.position + offset; // ëŒ€ìƒ ìºë¦­í„° ìœ„ì¹˜ì— offsetì„ ë”í•œ ìœ„ì¹˜
+                                                                // SmoothDamp í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ í˜„ì¬ ìœ„ì¹˜ì—ì„œ ëª©í‘œ ìœ„ì¹˜ë¡œ ë¶€ë“œëŸ½ê²Œ ì´ë™
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+            transform.position = smoothedPosition;
+        }       
     }
 }
