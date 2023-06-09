@@ -8,9 +8,9 @@ public class Gamerespawn : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(transform.position.y < threshold)
+        if (transform.position.y < threshold)
         {
-            transform.position = new Vector3(0f,10f, 0f);
+            transform.position = new Vector3(0f, 10f, 0f);
         }
     }
     // Start is called before the first frame update
