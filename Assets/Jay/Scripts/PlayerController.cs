@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f; // 이동 속도
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameObject rotationObject;
 
     private CharacterController characterController;
-    private Vector3 moveDirection;
+    private Vector3 velocity;
     private bool isJumping = false;
     private float verticalVelocity = 0f;
 
@@ -23,16 +24,30 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+
+        if (characterController.isGrounded)
+        {
+            isJumping = false;
+            verticalVelocity = 0f;
+        }
+        else
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            verticalVelocity = jumpForce;
+        }
+
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
         // 이동 방향 계산
-        Vector3 forwardMovement = transform.forward * moveVertical;
-        Vector3 rightMovement = transform.right * moveHorizontal;
-        moveDirection = forwardMovement + rightMovement;
-        moveDirection.Normalize();
-        moveDirection *= moveSpeed;
-
+        Vector3 dir = h * transform.right + v * transform.forward;
+        dir.Normalize();
+        Vector3 velocity = dir * moveSpeed;
+        //transform.position += velocity * Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.A))
             rotationObject.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
         else if (Input.GetKeyDown(KeyCode.D))
@@ -87,25 +102,9 @@ public class PlayerController : MonoBehaviour
         //    rotationObject.transform.rotation = rotation;
         //}
 
-        if (characterController.isGrounded)
-        {
-            isJumping = false;
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                verticalVelocity += jumpForce;
-            }
-            else
-            {
-                verticalVelocity = 0f;
-            }
-        }
-        else
-        {
-            verticalVelocity += gravity * Time.deltaTime;
-        }
+        velocity.y = verticalVelocity;
+        characterController.Move(velocity * Time.deltaTime);
 
-        moveDirection.y = verticalVelocity;
-        characterController.Move(moveDirection * Time.deltaTime);
     }
 }
