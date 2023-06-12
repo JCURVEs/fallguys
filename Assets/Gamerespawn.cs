@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Gamerespawn : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class Gamerespawn : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
         
     }

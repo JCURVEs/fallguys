@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            verticalVelocity += gravity * Time.deltaTime;
+            verticalVelocity += gravity* Time.deltaTime;
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -45,7 +45,12 @@ public class PlayerController : MonoBehaviour
 
         // 이동 방향 계산
         Vector3 dir = h * transform.right + v * transform.forward;
+        //Vector3 dir = Camera.main.transform.TransformDirection(new Vector3(h, 0, v));
+        //dir.y = 0;
+
+
         dir.Normalize();
+        //rb.MovePosition 
         Vector3 velocity = dir * moveSpeed;
         //transform.position += velocity * Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.A))
