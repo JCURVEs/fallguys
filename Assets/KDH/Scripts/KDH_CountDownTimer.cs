@@ -8,11 +8,14 @@ public class KDH_CountDownTimer : MonoBehaviour
     float currTime = 0;
     float startTime = 5;
     public Text countdownText;
+    public GameObject player;
+    Vector3 startPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         currTime = startTime;
+        startPosition = player.transform.position;
     }
 
     // Update is called once per frame
@@ -25,7 +28,8 @@ public class KDH_CountDownTimer : MonoBehaviour
         }
         else
         {
-            Input.ResetInputAxes();
+            //Input.ResetInputAxes();
+            player.transform.position = startPosition;
             countdownText.text = currTime.ToString("0");
         }
         if(currTime < 0)

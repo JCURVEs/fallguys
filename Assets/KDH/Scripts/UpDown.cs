@@ -36,13 +36,13 @@ public class UpDown : MonoBehaviour
             {
                 bUp = false;
                 currTime = 0;
-                moveTime = Random.Range(2, 6);
+                //moveTime = Random.Range(2, 6);
             }
             else
             {
                 bUp = true;
                 currTime = 0;
-                moveTime = Random.Range(2, 6);
+                //moveTime = Random.Range(2, 6);
 
             }
         }
