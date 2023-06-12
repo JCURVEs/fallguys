@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject rotationObject;
 
-    private CharacterController characterController;
+    public CharacterController characterController;
     private Vector3 velocity;
     private bool isJumping = false;
-    private float verticalVelocity = 0f;
+    public float verticalVelocity = 0f;
 
     private void Start()
     {
