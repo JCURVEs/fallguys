@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ec2d761566ed6b44bbd934694af281b
+guid: f3490b6f98de287408e1cf540dd38be0
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -26,85 +26,85 @@ ModelImporter:
     second: clavicle_r
   - first:
       1: 100014
-    second: drill_l
+    second: //RootNode
   - first:
       1: 100016
-    second: drill_r
+    second: drill_l
   - first:
       1: 100018
-    second: face
+    second: drill_r
   - first:
       1: 100020
-    second: foot_l
+    second: face
   - first:
       1: 100022
-    second: foot_r
+    second: foot_l
   - first:
       1: 100024
-    second: FrontBelly
+    second: foot_r
   - first:
       1: 100026
-    second: hand_l
+    second: FrontBelly
   - first:
       1: 100028
-    second: hand_r
+    second: hand_l
   - first:
       1: 100030
-    second: hat_01
+    second: hand_r
   - first:
       1: 100032
-    second: hat_02
+    second: hat_01
   - first:
       1: 100034
-    second: head
+    second: hat_02
   - first:
       1: 100036
-    second: hornA_01_l
+    second: head
   - first:
       1: 100038
-    second: hornA_01_r
+    second: hornA_01_l
   - first:
       1: 100040
-    second: hornA_02_l
+    second: hornA_01_r
   - first:
       1: 100042
-    second: hornA_02_r
+    second: hornA_02_l
   - first:
       1: 100044
-    second: hornB_01_l
+    second: hornA_02_r
   - first:
       1: 100046
-    second: hornB_01_r
+    second: hornB_01_l
   - first:
       1: 100048
-    second: hornB_02_l
+    second: hornB_01_r
   - first:
       1: 100050
-    second: hornB_02_r
+    second: hornB_02_l
   - first:
       1: 100052
-    second: hornB_03_l
+    second: hornB_02_r
   - first:
       1: 100054
-    second: hornB_03_r
+    second: hornB_03_l
   - first:
       1: 100056
-    second: hornC_01_l
+    second: hornB_03_r
   - first:
       1: 100058
-    second: hornC_01_r
+    second: hornC_01_l
   - first:
       1: 100060
-    second: hornC_02_l
+    second: hornC_01_r
   - first:
       1: 100062
-    second: hornC_02_r
+    second: hornC_02_l
   - first:
       1: 100064
-    second: Jaw
+    second: hornC_02_r
   - first:
       1: 100066
-    second: //RootNode
+    second: Jaw
   - first:
       1: 100068
     second: lowerarm_l
@@ -200,85 +200,85 @@ ModelImporter:
     second: clavicle_r
   - first:
       4: 400014
-    second: drill_l
+    second: //RootNode
   - first:
       4: 400016
-    second: drill_r
+    second: drill_l
   - first:
       4: 400018
-    second: face
+    second: drill_r
   - first:
       4: 400020
-    second: foot_l
+    second: face
   - first:
       4: 400022
-    second: foot_r
+    second: foot_l
   - first:
       4: 400024
-    second: FrontBelly
+    second: foot_r
   - first:
       4: 400026
-    second: hand_l
+    second: FrontBelly
   - first:
       4: 400028
-    second: hand_r
+    second: hand_l
   - first:
       4: 400030
-    second: hat_01
+    second: hand_r
   - first:
       4: 400032
-    second: hat_02
+    second: hat_01
   - first:
       4: 400034
-    second: head
+    second: hat_02
   - first:
       4: 400036
-    second: hornA_01_l
+    second: head
   - first:
       4: 400038
-    second: hornA_01_r
+    second: hornA_01_l
   - first:
       4: 400040
-    second: hornA_02_l
+    second: hornA_01_r
   - first:
       4: 400042
-    second: hornA_02_r
+    second: hornA_02_l
   - first:
       4: 400044
-    second: hornB_01_l
+    second: hornA_02_r
   - first:
       4: 400046
-    second: hornB_01_r
+    second: hornB_01_l
   - first:
       4: 400048
-    second: hornB_02_l
+    second: hornB_01_r
   - first:
       4: 400050
-    second: hornB_02_r
+    second: hornB_02_l
   - first:
       4: 400052
-    second: hornB_03_l
+    second: hornB_02_r
   - first:
       4: 400054
-    second: hornB_03_r
+    second: hornB_03_l
   - first:
       4: 400056
-    second: hornC_01_l
+    second: hornB_03_r
   - first:
       4: 400058
-    second: hornC_01_r
+    second: hornC_01_l
   - first:
       4: 400060
-    second: hornC_02_l
+    second: hornC_01_r
   - first:
       4: 400062
-    second: hornC_02_r
+    second: hornC_02_l
   - first:
       4: 400064
-    second: Jaw
+    second: hornC_02_r
   - first:
       4: 400066
-    second: //RootNode
+    second: Jaw
   - first:
       4: 400068
     second: lowerarm_l
@@ -359,7 +359,7 @@ ModelImporter:
     second: MainBody01
   - first:
       74: 7400000
-    second: JumpOneTake
+    second: Dance01
   - first:
       95: 9500000
     second: //RootNode
@@ -396,11 +396,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: JumpOneTake
+      name: Dance01
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 22
+      lastFrame: 84
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
