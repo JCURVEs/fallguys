@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &108312596 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8903687710321359521, guid: 60ab07b23a75fbf458c80cba08df9edb, type: 3}
+  m_PrefabInstance: {fileID: 1660358880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &161982162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -969,7 +974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8942734549851988516, guid: 60ab07b23a75fbf458c80cba08df9edb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.847
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8942734549851988516, guid: 60ab07b23a75fbf458c80cba08df9edb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1838,13 +1843,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4335964571768580052, guid: 8ec9f6602d49d474db0fa5436b74d7ff, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4335964571768580053, guid: 8ec9f6602d49d474db0fa5436b74d7ff, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1953961643016001075}
     - target: {fileID: 4335964571768580053, guid: 8ec9f6602d49d474db0fa5436b74d7ff, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 108312596}
+    - target: {fileID: 4335964571768580053, guid: 8ec9f6602d49d474db0fa5436b74d7ff, type: 3}
       propertyPath: speed
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4335964571768580053, guid: 8ec9f6602d49d474db0fa5436b74d7ff, type: 3}
+      propertyPath: jumpHeight
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4335964571768580054, guid: 8ec9f6602d49d474db0fa5436b74d7ff, type: 3}
       propertyPath: m_RootOrder

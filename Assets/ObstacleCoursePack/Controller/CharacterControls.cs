@@ -10,7 +10,7 @@ public class CharacterControls : MonoBehaviour {
 	public float airVelocity = 8f;
 	public float gravity = 10.0f;
 	public float maxVelocityChange = 10.0f;
-	public float jumpHeight = 2.0f;
+	public float jumpHeight = 3f;
 	public float maxFallSpeed = 20.0f;
 	public float rotateSpeed = 25f; //Speed the player rotate
 	private Vector3 moveDir;
@@ -27,15 +27,15 @@ public class CharacterControls : MonoBehaviour {
 
 	public Vector3 checkPoint;
 	private bool slide = false;
-
+    public Animator anim;
 	void  Start (){
 		// get the distance to ground
 		distToGround = GetComponent<Collider>().bounds.extents.y;
 	}
 	
 	bool IsGrounded (){
-		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
-	}
+		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 1f);
+	} 
 	
 	void Awake () {
 		rb = GetComponent<Rigidbody>();
@@ -93,6 +93,7 @@ public class CharacterControls : MonoBehaviour {
 				if (IsGrounded() && Input.GetButton("Jump"))
 				{
 					rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+
 				}
 			}
 			else
@@ -131,7 +132,7 @@ public class CharacterControls : MonoBehaviour {
 		Vector3 h2 = h * cam.transform.right; //Horizontal axis to which I want to move with respect to the camera
 		moveDir = (v2 + h2).normalized; //Global position to which I want to move in magnitude 1
 
-		RaycastHit hit;
+        RaycastHit hit;
 		if (Physics.Raycast(transform.position, -Vector3.up, out hit, distToGround + 0.1f))
 		{
 			if (hit.transform.tag == "Slide")
@@ -143,13 +144,32 @@ public class CharacterControls : MonoBehaviour {
 				slide = false;
 			}
 		}
-	}
+        if(h == 0 && v== 0)
+        {
+            anim.SetBool("Run", false);
+        }
+        else
+        {
+            anim.SetBool("Run", true);
+        }
+        if (!IsGrounded())
+        {
+            anim.SetBool("Jump", true);
+        }
+        else 
+        {
+            anim.SetBool("Jump",false);
+        }
+        
+    }
 
 	float CalculateJumpVerticalSpeed () {
 		// From the jump height and gravity we deduce the upwards speed 
 		// for the character to reach at the apex.
 		return Mathf.Sqrt(2 * jumpHeight * gravity);
+        
 	}
+
 
 	public void HitPlayer(Vector3 velocityF, float time)
 	{
@@ -196,5 +216,6 @@ public class CharacterControls : MonoBehaviour {
 			isStuned = false;
 			canMove = true;
 		}
-	}
+
+    }
 }
