@@ -11,5 +11,9 @@ public class KillZone : MonoBehaviour
         {
 			col.gameObject.GetComponent<CharacterControls>().LoadCheckPoint();
 		}
+        else if(col.gameObject.tag == "Enemy")
+        {
+            col.gameObject.GetComponent<KDH_Enemy>().LoadCheckPoint();
+        }
 	}
 }

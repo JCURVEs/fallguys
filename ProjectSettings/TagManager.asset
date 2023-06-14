@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Slide
+  - Wall
+  - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -35,8 +39,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Enemy
+  - Ground
   m_SortingLayers:
   - name: Default
     uniqueID: 0

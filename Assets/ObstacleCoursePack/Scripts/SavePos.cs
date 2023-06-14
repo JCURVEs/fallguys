@@ -12,5 +12,9 @@ public class SavePos : MonoBehaviour
 		{
 			col.gameObject.GetComponent<CharacterControls>().checkPoint = checkPoint.position;
 		}
-	}
+        else if (col.gameObject.tag == "Enemy")
+        {
+            col.gameObject.GetComponent<KDH_Enemy>().checkPoint = checkPoint.position;
+        }
+    }
 }
