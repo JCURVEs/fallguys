@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (CapsuleCollider))]
@@ -28,11 +29,13 @@ public class CharacterControls : MonoBehaviour {
 	public Vector3 checkPoint;
 	private bool slide = false;
     public Animator anim;
-	void  Start (){
+
+    void  Start (){
 		// get the distance to ground
 		distToGround = GetComponent<Collider>().bounds.extents.y;
-	}
-	
+
+    }
+
 	bool IsGrounded (){
 		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 1f);
 	} 
@@ -152,31 +155,16 @@ public class CharacterControls : MonoBehaviour {
         {
             anim.SetBool("Run", true);
         }
-        //float Dive = Input.GetAxis("Dive");
 
-        //transform.Translate(new Vector3(Dive, 0, 0) * speed * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            anim.SetTrigger("Dive");
+        }
 
-        //if (Input.GetButtonDown("Dive"))
-        //{
-        //    anim.SetTrigger("Dive");
-        //}
-        //else
-        //{
-        //    anim.SetTrigger("Dive");
-        //}
-
-        //if (!IsGrounded())
-        //{
-        //    anim.SetBool("Jump", true);
-        //}
-        //else 
-        //{
-        //    anim.SetBool("Jump",false);
-        //}
 
     }
 
-	float CalculateJumpVerticalSpeed () {
+    float CalculateJumpVerticalSpeed () {
 		// From the jump height and gravity we deduce the upwards speed 
 		// for the character to reach at the apex.
 		return Mathf.Sqrt(2 * jumpHeight * gravity);
@@ -191,9 +179,15 @@ public class CharacterControls : MonoBehaviour {
 		pushForce = velocityF.magnitude;
 		pushDir = Vector3.Normalize(velocityF);
 		StartCoroutine(Decrease(velocityF.magnitude, time));
-	}
+        if(pushForce >= 25)
+        {
+            anim.SetTrigger("Die");
+        }
 
-	public void LoadCheckPoint()
+    }
+
+
+    public void LoadCheckPoint()
 	{
 		transform.position = checkPoint;
 	}
@@ -231,4 +225,5 @@ public class CharacterControls : MonoBehaviour {
 		}
 
     }
+
 }

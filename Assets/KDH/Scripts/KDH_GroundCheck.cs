@@ -26,8 +26,6 @@ public class KDH_GroundCheck : MonoBehaviour
             if (hit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
-                print(isGrounded);
-
             }
         }
         else
