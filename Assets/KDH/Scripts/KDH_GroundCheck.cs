@@ -11,6 +11,7 @@ public class KDH_GroundCheck : MonoBehaviour
 
     private void Start()
     {
+
         //animator = GetComponent<Animator>();
     }
 
@@ -25,11 +26,14 @@ public class KDH_GroundCheck : MonoBehaviour
             if (hit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
+                print(isGrounded);
+
             }
         }
         else
         {
             isGrounded = false;
+
         }
         animator.SetBool("isGrounded", isGrounded);
     }

@@ -10,7 +10,7 @@ public class CharacterControls : MonoBehaviour {
 	public float airVelocity = 8f;
 	public float gravity = 10.0f;
 	public float maxVelocityChange = 10.0f;
-	public float jumpHeight = 3f;
+	public float jumpHeight = 2f;
 	public float maxFallSpeed = 20.0f;
 	public float rotateSpeed = 25f; //Speed the player rotate
 	private Vector3 moveDir;
@@ -24,7 +24,7 @@ public class CharacterControls : MonoBehaviour {
 	private bool wasStuned = false; //If player was stunned before get stunned another time
 	private float pushForce;
 	private Vector3 pushDir;
-
+    private float Dive;
 	public Vector3 checkPoint;
 	private bool slide = false;
     public Animator anim;
@@ -152,15 +152,28 @@ public class CharacterControls : MonoBehaviour {
         {
             anim.SetBool("Run", true);
         }
-        if (!IsGrounded())
-        {
-            anim.SetBool("Jump", true);
-        }
-        else 
-        {
-            anim.SetBool("Jump",false);
-        }
-        
+        //float Dive = Input.GetAxis("Dive");
+
+        //transform.Translate(new Vector3(Dive, 0, 0) * speed * Time.deltaTime);
+
+        //if (Input.GetButtonDown("Dive"))
+        //{
+        //    anim.SetTrigger("Dive");
+        //}
+        //else
+        //{
+        //    anim.SetTrigger("Dive");
+        //}
+
+        //if (!IsGrounded())
+        //{
+        //    anim.SetBool("Jump", true);
+        //}
+        //else 
+        //{
+        //    anim.SetBool("Jump",false);
+        //}
+
     }
 
 	float CalculateJumpVerticalSpeed () {
