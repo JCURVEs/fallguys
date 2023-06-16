@@ -18,6 +18,7 @@ public class CharacterControls : MonoBehaviour {
 	public GameObject cam;
 	private Rigidbody rb;
 
+
 	private float distToGround;
 
 	private bool canMove = true; //If player is not hitted
@@ -28,6 +29,10 @@ public class CharacterControls : MonoBehaviour {
     private float Dive;
 	public Vector3 checkPoint;
 	private bool slide = false;
+    //private bool rAuto = false;
+    //private float currentTime;
+    //private float pushTime = 0.1f;
+
     public Animator anim;
 
     void  Start (){
@@ -96,7 +101,7 @@ public class CharacterControls : MonoBehaviour {
 				if (IsGrounded() && Input.GetButton("Jump"))
 				{
 					rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-
+                    anim.SetTrigger("Jump");
 				}
 			}
 			else
@@ -147,20 +152,51 @@ public class CharacterControls : MonoBehaviour {
 				slide = false;
 			}
 		}
-        if(h == 0 && v== 0)
+        //if (rAuto)
+        //{
+        //    currentTime += Time.deltaTime;
+        //    if(currentTime > pushTime) 
+        //    {
+
+        //    }  
+        //}
+        //if(Input.GetKeyDown(KeyCode.W))
+        //{
+        //    rAuto = true;
+        //    anim.SetTrigger("Run");
+        //    currentTime = 0;
+        //}
+        //else if(Input.GetKeyUp(KeyCode.W))
+        //{
+        //    rAuto = false;
+        //}
+
+        if (Input.GetKey(KeyCode.W))
         {
-            anim.SetBool("Run", false);
+            anim.SetTrigger("Run");
         }
-        else
+        else if(Input.GetKey(KeyCode.S))
         {
-            anim.SetBool("Run", true);
+            anim.SetTrigger("Run");
+        }
+        else if(Input.GetKey(KeyCode.D))
+        {
+            anim.SetTrigger("Run");
+        }
+        else if(Input.GetKey(KeyCode.A))
+        {
+            anim.SetTrigger("Run");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             anim.SetTrigger("Dive");
         }
-
+        //if(Input.GetKeyDown(KeyCode.Space ) && !hasJumped )
+        //{
+        //    anim.SetTrigger("Jump");
+        //}
+        
 
     }
 
