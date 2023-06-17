@@ -17,6 +17,7 @@ public class CharacterControls : MonoBehaviour {
 	private Vector3 moveDir;
 	public GameObject cam;
 	private Rigidbody rb;
+    public KDH_GroundCheck GC;
 
 
 	private float distToGround;
@@ -29,6 +30,10 @@ public class CharacterControls : MonoBehaviour {
     private float Dive;
 	public Vector3 checkPoint;
 	private bool slide = false;
+    private bool isMoving = false;
+    private float idleTimer = 0.0f;
+    private float idleTimeThreshold = 0.1f;
+    private bool isColliding = false;
     //private bool rAuto = false;
     //private float currentTime;
     //private float pushTime = 0.1f;
@@ -97,12 +102,15 @@ public class CharacterControls : MonoBehaviour {
 					//Debug.Log(rb.velocity.magnitude);
 				}
 
-				// Jump
-				if (IsGrounded() && Input.GetButton("Jump"))
+                // Jump
+                
+				if (GC.IsGrounded() && Input.GetButton("Jump"))
 				{
 					rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
                     anim.SetTrigger("Jump");
+                    anim.SetBool("Run", false);
 				}
+                //else { anim.SetBool("Idle",true); }
 			}
 			else
 			{
@@ -152,52 +160,46 @@ public class CharacterControls : MonoBehaviour {
 				slide = false;
 			}
 		}
-        //if (rAuto)
-        //{
-        //    currentTime += Time.deltaTime;
-        //    if(currentTime > pushTime) 
-        //    {
 
-        //    }  
-        //}
-        //if(Input.GetKeyDown(KeyCode.W))
-        //{
-        //    rAuto = true;
-        //    anim.SetTrigger("Run");
-        //    currentTime = 0;
-        //}
-        //else if(Input.GetKeyUp(KeyCode.W))
-        //{
-        //    rAuto = false;
-        //}
+        //if(Mathf.Abs(h) <1f  && Mathf.Abs(v) <1f )
+        //if(h == 0  && v == 0)
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        {
+            
+            anim.SetBool("Idle", true);
+            anim.SetBool("Run", false);
+            //idleTimer += Time.deltaTime;
+            //if(idleTimer >= idleTimeThreshold) 
+            //{
+                
+                
+            //}
+            //else
+            //{
+            //    anim.SetBool("Idle", false);
+            //    anim.SetTrigger("Run");
+            //    print(false);
+            //}
+        }
+        else
+        {
+            anim.SetBool("Run",true);
+            anim.SetBool("Idle", false);
+        }
+       
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            anim.SetTrigger("Run");
-        }
-        else if(Input.GetKey(KeyCode.S))
-        {
-            anim.SetTrigger("Run");
-        }
-        else if(Input.GetKey(KeyCode.D))
-        {
-            anim.SetTrigger("Run");
-        }
-        else if(Input.GetKey(KeyCode.A))
-        {
-            anim.SetTrigger("Run");
-        }
+
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             anim.SetTrigger("Dive");
         }
+        
         //if(Input.GetKeyDown(KeyCode.Space ) && !hasJumped )
         //{
         //    anim.SetTrigger("Jump");
         //}
         
-
     }
 
     float CalculateJumpVerticalSpeed () {
@@ -215,10 +217,13 @@ public class CharacterControls : MonoBehaviour {
 		pushForce = velocityF.magnitude;
 		pushDir = Vector3.Normalize(velocityF);
 		StartCoroutine(Decrease(velocityF.magnitude, time));
-        if(pushForce >= 25)
+        if(pushForce >= 10)
         {
-            anim.SetTrigger("Die");
+            anim.SetTrigger("GetHit");
+   
         }
+        
+        
 
     }
 

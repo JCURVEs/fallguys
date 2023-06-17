@@ -9688,39 +9688,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &5920745868235269682 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 68629896568742071, guid: b1b04304fe534fc488764622046f8394, type: 3}
-  m_PrefabInstance: {fileID: 5969913254400870021}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &5920745868235269688
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5920745868235269682}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.1823227
-  m_Height: 1.114576
-  m_Direction: 0
-  m_Center: {x: -0.97, y: 0.1488689, z: 0.16}
---- !u!136 &5920745868235269689
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5920745868235269682}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.18232268
-  m_Height: 1.1145765
-  m_Direction: 0
-  m_Center: {x: 0.9785376, y: 0.14886892, z: 0.16}
 --- !u!4 &5925056664725158956
 Transform:
   m_ObjectHideFlags: 0
@@ -9748,6 +9715,18 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1953961643016001075}
+    - target: {fileID: 68629896568742064, guid: b1b04304fe534fc488764622046f8394, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 68629896568742066, guid: b1b04304fe534fc488764622046f8394, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 68629896568742066, guid: b1b04304fe534fc488764622046f8394, type: 3}
+      propertyPath: groundCheckDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 68629896568742067, guid: b1b04304fe534fc488764622046f8394, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -10193,6 +10172,7 @@ MonoBehaviour:
   maxFallSpeed: 20
   rotateSpeed: 25
   cam: {fileID: 1953961643016001075}
+  GC: {fileID: 0}
   checkPoint: {x: 0, y: 0, z: 0}
   anim: {fileID: 2441916979653349258}
 --- !u!54 &6517603947835467501
