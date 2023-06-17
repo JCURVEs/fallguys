@@ -18,7 +18,8 @@ public class CharacterControls : MonoBehaviour {
 	public GameObject cam;
 	private Rigidbody rb;
     public KDH_GroundCheck GC;
-
+    public float flyingForce = 10f;
+    
 
 	private float distToGround;
 
@@ -137,7 +138,22 @@ public class CharacterControls : MonoBehaviour {
 		}
 		// We apply gravity manually for more tuning control
 		rb.AddForce(new Vector3(0, -gravity * GetComponent<Rigidbody>().mass, 0));
+
+        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
+        rb.AddForce(movement * flyingForce);
+        if(verticalInput > 0.1f)
+        {
+            anim.SetBool("Fly",true);
+        }
+        else
+        {
+            anim.SetBool("Fly", false);
+        }
 	}
+
 
 	private void Update()
 	{
