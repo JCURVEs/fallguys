@@ -4,41 +4,59 @@ using UnityEngine;
 
 public class KDH_Enemy : MonoBehaviour
 {
-    //public float minSpeed = 5;
-    //public float maxSpeed = 10;
-    public float speed = 4;
+    public float speed = 10;
     float currTime = 0;
     public float jumpTime = 2;
     bool bJumping = false;
     public Rigidbody rb;
     Quaternion desiredRotation = Quaternion.Euler(0, 0, 0);
     public Vector3 checkPoint;
-
+    GameObject countdownTimer;
+    Vector3 startPosition;
+    Vector3 dir;
+    int rand;
+    public GameObject target;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        startPosition = transform.position;
+        countdownTimer = GameObject.Find("CountDown");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //speed = Random.Range(minSpeed, maxSpeed);
-        transform.position += transform.forward * speed * Time.deltaTime;
-
-        currTime += Time.deltaTime;
-
-        if (currTime > jumpTime)
+        if (countdownTimer)
         {
-            if(!bJumping)
+            transform.position = startPosition;
+        }      
+
+        else
+        {
+            //if(Random.Range(0,10) > 3)
             {
-                rb.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
+                dir = target.transform.position - transform.position;
+                dir.Normalize();
             }
-            currTime = 0;
-        }
-        
-        transform.rotation = desiredRotation;
+            //else
+            //{
+            //    dir = Vector3.up;
+            //}
+            transform.position += dir * speed * Time.deltaTime;
+
+            currTime += Time.deltaTime;
+
+            if (currTime > jumpTime)
+            {
+                if (!bJumping)
+                {
+                    rb.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
+                }
+                currTime = 0;
+            }
+            transform.rotation = desiredRotation;
+        }       
     }
 
     public void LoadCheckPoint()

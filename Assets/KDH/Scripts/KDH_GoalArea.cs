@@ -30,6 +30,6 @@ public class KDH_GoalArea : MonoBehaviour
         goalCount++;
         goalCountText.text = goalCount.ToString() + " / 30";
 
-        Destroy(other.gameObject);
+        other.gameObject.SetActive(false);
     }
 }

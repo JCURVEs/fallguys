@@ -44,7 +44,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 100, y: 100, z: 100}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &9089914876110654702
 MonoBehaviour:
@@ -59,3 +59,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clearUIFactory: {fileID: 7606416548405211304, guid: f1d29e16c9d4cd24ca0d8b3e4a8eef52, type: 3}
+  goalCountText: {fileID: 0}

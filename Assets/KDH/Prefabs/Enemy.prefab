@@ -132,7 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   jumpTime: 2
-  rb: {fileID: 0}
+  rb: {fileID: 9126178053372809197}
+  checkPoint: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
 --- !u!114 &-870492520757390006
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,24 +4,67 @@ using UnityEngine;
 
 public class FallPlat : MonoBehaviour
 {
-	public float fallTime = 0.5f;
+    private bool isPlayerOnPlatform = false;
+    private WaitForSeconds disappearTime = new WaitForSeconds(0.5f);
+    float currTime = 0;
+    float moveTime = 0.1f;
+    bool bMove = true;
+    Vector3 startPosition;
 
+    private void Start()
+    {
+        startPosition = transform.position;
+    }
 
-	void OnCollisionEnter(Collision collision)
-	{
-		foreach (ContactPoint contact in collision.contacts)
-		{
-			//Debug.DrawRay(contact.point, contact.normal, Color.white);
-			if (collision.gameObject.tag == "Player")
-			{
-				StartCoroutine(Fall(fallTime));
-			}
-		}
-	}
+    private void Update()
+    {
+        currTime += Time.deltaTime;
+        if(isPlayerOnPlatform)
+        {
+            if(currTime>moveTime)
+            {
+                if(bMove)
+                {
+                    transform.position += Vector3.forward * 50 * Time.deltaTime;
+                    transform.position += Vector3.right * 50 * Time.deltaTime;                    
+                    currTime = 0;
+                    bMove = false;
+                }
+                else
+                {
+                    transform.position -= Vector3.forward * 50 * Time.deltaTime;
+                    transform.position -= Vector3.right * 50 * Time.deltaTime;
+                    currTime = 0;
+                    bMove = true;                    
+                }
+            }        
+        }
+    }
 
-	IEnumerator Fall(float time)
-	{
-		yield return new WaitForSeconds(time);
-		Destroy(gameObject);
-	}
+    private void OnCollisionEnter(Collision collision)
+    {        
+        if (!isPlayerOnPlatform)
+        {
+            isPlayerOnPlatform = true;
+            StartCoroutine(DisappearPlatform());
+        }        
+    }
+
+    private IEnumerator DisappearPlatform()
+    {
+        yield return disappearTime;
+
+        // Disable the platform renderer and collider
+        GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
+        yield return new WaitForSeconds(1f);
+
+        transform.position = startPosition;
+        // Enable the platform renderer and collider
+        GetComponent<Renderer>().enabled = true;
+        GetComponent<Collider>().enabled = true;
+
+        isPlayerOnPlatform = false;
+    }
 }

@@ -19,6 +19,10 @@ public class Bounce : MonoBehaviour
 				collision.gameObject.GetComponent<CharacterControls>().HitPlayer(-hitDir * force, stunTime);
 				return;
 			}
+            else
+            {
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 10, ForceMode.VelocityChange);
+            }
 		}
 		/*if (collision.relativeVelocity.magnitude > 2)
 		{
