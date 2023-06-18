@@ -43,7 +43,7 @@ public class KDH_Bounce : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 hitDir = contact.normal;
-                collision.gameObject.GetComponent<CharacterControls>().HitPlayer(-hitDir * force, stunTime);
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 20, ForceMode.VelocityChange);
                 return;
             }
             else

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4467461681047675898}
   - component: {fileID: 4467461681047675892}
   - component: {fileID: 4467461681047675893}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4467461681439957119}
   - component: {fileID: 4467461681439957116}
   - component: {fileID: 4467461681439957117}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RotationPlat (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,9 +194,9 @@ GameObject:
   - component: {fileID: 4467461681906247392}
   - component: {fileID: 4467461681906247393}
   - component: {fileID: 4467461681906247398}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RotationX
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

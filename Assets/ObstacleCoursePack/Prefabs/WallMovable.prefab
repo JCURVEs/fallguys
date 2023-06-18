@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3872001226836439019}
   - component: {fileID: 3872001226836439018}
   - component: {fileID: 3872001226836439030}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallMovable
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

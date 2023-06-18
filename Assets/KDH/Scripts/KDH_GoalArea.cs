@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class KDH_GoalArea : MonoBehaviour
@@ -31,5 +32,15 @@ public class KDH_GoalArea : MonoBehaviour
         goalCountText.text = goalCount.ToString() + " / 30";
 
         other.gameObject.SetActive(false);
+
+        StartCoroutine(GoRankScene());
     }
+    private IEnumerator GoRankScene()
+    {
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene(0);
+    }
+    
 }
