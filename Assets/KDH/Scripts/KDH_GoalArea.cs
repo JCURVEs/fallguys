@@ -26,14 +26,15 @@ public class KDH_GoalArea : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             clearUIFactory.SetActive(true);
-            
+            StartCoroutine(GoRankScene());
+
         }
         goalCount++;
         goalCountText.text = goalCount.ToString() + " / 30";
 
         other.gameObject.SetActive(false);
 
-        StartCoroutine(GoRankScene());
+        
     }
     private IEnumerator GoRankScene()
     {
