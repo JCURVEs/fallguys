@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (CapsuleCollider))]
@@ -16,6 +17,9 @@ public class CharacterControls : MonoBehaviour {
 	private Vector3 moveDir;
 	public GameObject cam;
 	private Rigidbody rb;
+    public KDH_GroundCheck GC;
+    public float flyingForce = 10f;
+    
 
 	private float distToGround;
 
@@ -27,12 +31,22 @@ public class CharacterControls : MonoBehaviour {
     private float Dive;
 	public Vector3 checkPoint;
 	private bool slide = false;
+    private bool isMoving = false;
+    private float idleTimer = 0.0f;
+    private float idleTimeThreshold = 0.1f;
+    private bool isColliding = false;
+    //private bool rAuto = false;
+    //private float currentTime;
+    //private float pushTime = 0.1f;
+
     public Animator anim;
-	void  Start (){
+
+    void  Start (){
 		// get the distance to ground
 		distToGround = GetComponent<Collider>().bounds.extents.y;
-	}
-	
+
+    }
+
 	bool IsGrounded (){
 		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 1f);
 	} 
@@ -89,12 +103,15 @@ public class CharacterControls : MonoBehaviour {
 					//Debug.Log(rb.velocity.magnitude);
 				}
 
-				// Jump
-				if (IsGrounded() && Input.GetButton("Jump"))
+                // Jump
+                
+				if (GC.IsGrounded() && Input.GetButton("Jump"))
 				{
 					rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-
+                    anim.SetTrigger("Jump");
+                    anim.SetBool("Run", false);
 				}
+                //else { anim.SetBool("Idle",true); }
 			}
 			else
 			{
@@ -121,7 +138,22 @@ public class CharacterControls : MonoBehaviour {
 		}
 		// We apply gravity manually for more tuning control
 		rb.AddForce(new Vector3(0, -gravity * GetComponent<Rigidbody>().mass, 0));
+
+        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
+        rb.AddForce(movement * flyingForce);
+        if(verticalInput > 0.1f)
+        {
+            anim.SetBool("Fly",true);
+        }
+        else
+        {
+            anim.SetBool("Fly", false);
+        }
 	}
+
 
 	private void Update()
 	{
@@ -144,39 +176,49 @@ public class CharacterControls : MonoBehaviour {
 				slide = false;
 			}
 		}
-        if(h == 0 && v== 0)
+
+        //if(Mathf.Abs(h) <1f  && Mathf.Abs(v) <1f )
+        //if(h == 0  && v == 0)
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
+            
+            anim.SetBool("Idle", true);
             anim.SetBool("Run", false);
+            //idleTimer += Time.deltaTime;
+            //if(idleTimer >= idleTimeThreshold) 
+            //{
+                
+                
+            //}
+            //else
+            //{
+            //    anim.SetBool("Idle", false);
+            //    anim.SetTrigger("Run");
+            //    print(false);
+            //}
         }
         else
         {
-            anim.SetBool("Run", true);
+            anim.SetBool("Run",true);
+            anim.SetBool("Idle", false);
         }
-        //float Dive = Input.GetAxis("Dive");
+       
 
-        //transform.Translate(new Vector3(Dive, 0, 0) * speed * Time.deltaTime);
 
-        //if (Input.GetButtonDown("Dive"))
-        //{
-        //    anim.SetTrigger("Dive");
-        //}
-        //else
-        //{
-        //    anim.SetTrigger("Dive");
-        //}
 
-        //if (!IsGrounded())
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            anim.SetTrigger("Dive");
+        }
+        
+        //if(Input.GetKeyDown(KeyCode.Space ) && !hasJumped )
         //{
-        //    anim.SetBool("Jump", true);
+        //    anim.SetTrigger("Jump");
         //}
-        //else 
-        //{
-        //    anim.SetBool("Jump",false);
-        //}
-
+        
     }
 
-	float CalculateJumpVerticalSpeed () {
+    float CalculateJumpVerticalSpeed () {
 		// From the jump height and gravity we deduce the upwards speed 
 		// for the character to reach at the apex.
 		return Mathf.Sqrt(2 * jumpHeight * gravity);
@@ -191,9 +233,18 @@ public class CharacterControls : MonoBehaviour {
 		pushForce = velocityF.magnitude;
 		pushDir = Vector3.Normalize(velocityF);
 		StartCoroutine(Decrease(velocityF.magnitude, time));
-	}
+        if(pushForce >= 10)
+        {
+            anim.SetTrigger("GetHit");
+   
+        }
+        
+        
 
-	public void LoadCheckPoint()
+    }
+
+
+    public void LoadCheckPoint()
 	{
 		transform.position = checkPoint;
 	}
@@ -231,4 +282,5 @@ public class CharacterControls : MonoBehaviour {
 		}
 
     }
+
 }
