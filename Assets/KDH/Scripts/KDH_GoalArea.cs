@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class KDH_GoalArea : MonoBehaviour
 {
     public GameObject clearUIFactory;
-    float goalCount = 0;
+    int goalCount = 0;
     public Text goalCountText;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,7 @@ public class KDH_GoalArea : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             clearUIFactory.SetActive(true);
+            KDH_RankManager.instance.RANK = goalCount + 1;
             StartCoroutine(GoRankScene());
 
         }
@@ -41,7 +42,7 @@ public class KDH_GoalArea : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(3);
     }
     
 }
