@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/KDH/Scene/RankScene.unity
     guid: 8eaa642d3c4285446bac6dc398c9f656
+  - enabled: 1
+    path: Assets/Jay/Scenes/Scene/WaitScene.unity
+    guid: 6cc79d2b13443594ba3678b8d2baa93b
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: dcc680183d8b4234fb3dfd691a6fa22b, type: 2}

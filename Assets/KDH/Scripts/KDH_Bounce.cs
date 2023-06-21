@@ -10,6 +10,13 @@ public class KDH_Bounce : MonoBehaviour
     bool bBounce = false;
     float currTime = 0;
     float scaleTime = 1;
+    public AudioSource sound;
+    public GameObject vfx;
+
+    private void Start()
+    {
+        vfx.SetActive(false);
+    }
 
     private void Update()
     {
@@ -44,6 +51,8 @@ public class KDH_Bounce : MonoBehaviour
             {
                 hitDir = contact.normal;
                 collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 20, ForceMode.VelocityChange);
+                sound.Play();
+                vfx.SetActive(true);
                 return;
             }
             else
