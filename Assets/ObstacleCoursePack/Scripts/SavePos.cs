@@ -5,6 +5,7 @@ using UnityEngine;
 public class SavePos : MonoBehaviour
 {
 	public Transform checkPoint;
+    public AudioSource checkPointSound;
 
 	void OnTriggerEnter(Collider col)
 	{
@@ -16,5 +17,7 @@ public class SavePos : MonoBehaviour
         {
             col.gameObject.GetComponent<KDH_Enemy>().checkPoint = checkPoint.position;
         }
+        checkPointSound.Stop();
+        checkPointSound.Play();
     }
 }

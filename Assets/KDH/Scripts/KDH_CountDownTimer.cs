@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class KDH_CountDownTimer : MonoBehaviour
 {
     float currTime = 0;
-    float startTime = 5;
+    float startTime = 3.5f;
     public Text countdownText;
     public GameObject player;
     Vector3 startPosition;

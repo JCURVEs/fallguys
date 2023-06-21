@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject escMenu;
+
+    public AudioClip buttonHighlightedSound;
+    private AudioSource audioSource;
+
     //public static GameManager instance;
 
     //private void Awake()
@@ -27,6 +31,9 @@ public class GameManager : MonoBehaviour
     {
         escMenu = GameObject.Find("Image ESC");
         escMenu.SetActive(false);
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = buttonHighlightedSound;
     }
 
     // Update is called once per frame
@@ -68,5 +75,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
+     
+    public void highlightedPlaySound()
+    {
+        audioSource.Play();
+    }
 }

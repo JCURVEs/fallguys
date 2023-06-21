@@ -14,7 +14,7 @@ public class KDH_RaceSceneManger : MonoBehaviour
 
     private IEnumerator PlaySoundDelayed()
     {
-        yield return new WaitForSeconds(4.5f); // Wait for 3 seconds
+        yield return new WaitForSeconds(3.5f); // Wait for 3 seconds
 
         audioSource.PlayOneShot(soundClip);
     }

@@ -9,6 +9,9 @@ public class KDH_GoalArea : MonoBehaviour
     public GameObject clearUIFactory;
     int goalCount = 0;
     public Text goalCountText;
+    public AudioSource goalSound;
+    public AudioSource bgm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,8 @@ public class KDH_GoalArea : MonoBehaviour
         {
             clearUIFactory.SetActive(true);
             KDH_RankManager.instance.RANK = goalCount + 1;
+            bgm.Stop();
+            goalSound.Play();
             StartCoroutine(GoRankScene());
 
         }
@@ -40,7 +45,7 @@ public class KDH_GoalArea : MonoBehaviour
     private IEnumerator GoRankScene()
     {
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene(3);
     }
