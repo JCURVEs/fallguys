@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void OnMyStart()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(4);
     }
 
     public void OnMyQuit()
