@@ -19,7 +19,9 @@ public class CharacterControls : MonoBehaviour {
 	private Rigidbody rb;
     public KDH_GroundCheck GC;
     public float flyingForce = 10f;
-    
+    public GameObject VFX;
+    float diveTimer = 0f;
+    float diveDuration = 2f;
 
 	private float distToGround;
 
@@ -29,6 +31,7 @@ public class CharacterControls : MonoBehaviour {
 	private float pushForce;
 	private Vector3 pushDir;
     private float Dive;
+    private bool isDiving = false;
 	public Vector3 checkPoint;
 	private bool slide = false;
     private bool isMoving = false;
@@ -104,13 +107,18 @@ public class CharacterControls : MonoBehaviour {
 				}
 
                 // Jump
-                
+
 				if (GC.IsGrounded() && Input.GetButton("Jump"))
 				{
 					rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
                     anim.SetTrigger("Jump");
                     anim.SetBool("Run", false);
-				}
+                    VFX.SetActive(true);
+                    VFX.transform.position = this.transform.position - new Vector3(0,1,0) ;
+
+                }
+                
+
                 //else { anim.SetBool("Idle",true); }
 			}
 			else
@@ -208,7 +216,22 @@ public class CharacterControls : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            anim.SetTrigger("Dive");
+            if(!isDiving)
+            {
+                isDiving = true;
+                diveTimer = 0f;
+                anim.SetTrigger("Dive");
+            }
+
+        }
+       if(isDiving)
+        {
+            diveTimer += Time.deltaTime;
+            if(diveTimer >= diveDuration)
+            {
+                isDiving = false;
+                diveTimer = 0f;
+            }
         }
         
         //if(Input.GetKeyDown(KeyCode.Space ) && !hasJumped )
