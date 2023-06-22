@@ -584,7 +584,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25078
+  m_Name: pb_Mesh25004
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5929,7 +5929,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25812
+  m_Name: pb_Mesh25746
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7408,7 +7408,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25450
+  m_Name: pb_Mesh25382
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14503,7 +14503,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25686
+  m_Name: pb_Mesh25618
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16419,22 +16419,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1953961643016001075}
-    - target: {fileID: 68629896568742064, guid: b1b04304fe534fc488764622046f8394, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 68629896568742064, guid: b1b04304fe534fc488764622046f8394, type: 3}
-      propertyPath: effectParticleSystem
-      value: 
-      objectReference: {fileID: 2084737473}
-    - target: {fileID: 68629896568742066, guid: b1b04304fe534fc488764622046f8394, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 68629896568742066, guid: b1b04304fe534fc488764622046f8394, type: 3}
-      propertyPath: groundCheckDistance
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 68629896568742067, guid: b1b04304fe534fc488764622046f8394, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -18265,11 +18249,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
   m_PrefabInstance: {fileID: 1719114263}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &2084737473 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
-  m_PrefabInstance: {fileID: 1719114263}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2084737474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
@@ -18600,6 +18579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnSound: {fileID: 0}
+  vfx: {fileID: 0}
 --- !u!4 &2132372210 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2644991042193281532, guid: bd117f6e0af0c2942926e61c209b253f, type: 3}

@@ -22,6 +22,14 @@ public class CharacterControls : MonoBehaviour {
     public GameObject VFX;
     float diveTimer = 0f;
     float diveDuration = 2f;
+    private AudioSource audioSource;
+    public AudioClip jumpClip;
+    public AudioClip diveClip;
+    public AudioClip footClip;
+    public AudioClip LoadingfallClip;
+    public float stepInterval = 0.5f;
+    private float stepTimer = 0f;
+    
 
 	private float distToGround;
 
@@ -47,7 +55,7 @@ public class CharacterControls : MonoBehaviour {
     void  Start (){
 		// get the distance to ground
 		distToGround = GetComponent<Collider>().bounds.extents.y;
-
+        audioSource = GetComponent<AudioSource>();
     }
 
 	bool IsGrounded (){
@@ -115,6 +123,7 @@ public class CharacterControls : MonoBehaviour {
                     anim.SetBool("Run", false);
                     VFX.SetActive(true);
                     VFX.transform.position = this.transform.position - new Vector3(0,1,0) ;
+                    audioSource.PlayOneShot(jumpClip);
 
                 }
                 
@@ -184,7 +193,7 @@ public class CharacterControls : MonoBehaviour {
 				slide = false;
 			}
 		}
-
+        stepTimer += Time.deltaTime;
         //if(Mathf.Abs(h) <1f  && Mathf.Abs(v) <1f )
         //if(h == 0  && v == 0)
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
@@ -192,11 +201,11 @@ public class CharacterControls : MonoBehaviour {
             
             anim.SetBool("Idle", true);
             anim.SetBool("Run", false);
+            stepTimer = 0;
+
             //idleTimer += Time.deltaTime;
             //if(idleTimer >= idleTimeThreshold) 
             //{
-                
-                
             //}
             //else
             //{
@@ -205,15 +214,24 @@ public class CharacterControls : MonoBehaviour {
             //    print(false);
             //}
         }
+
         else
         {
-            anim.SetBool("Run",true);
+            anim.SetBool("Run", true);
             anim.SetBool("Idle", false);
+            
+            if(stepTimer >= stepInterval)
+            {
+
+                audioSource.PlayOneShot(footClip);
+                stepTimer = 0;
+            }
+
+           
+
+            
         }
-       
-
-
-
+ 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if(!isDiving)
@@ -221,6 +239,7 @@ public class CharacterControls : MonoBehaviour {
                 isDiving = true;
                 diveTimer = 0f;
                 anim.SetTrigger("Dive");
+                audioSource.PlayOneShot(diveClip);
             }
 
         }
@@ -240,7 +259,7 @@ public class CharacterControls : MonoBehaviour {
         //}
         
     }
-
+    
     float CalculateJumpVerticalSpeed () {
 		// From the jump height and gravity we deduce the upwards speed 
 		// for the character to reach at the apex.
