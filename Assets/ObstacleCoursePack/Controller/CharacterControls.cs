@@ -19,6 +19,17 @@ public class CharacterControls : MonoBehaviour {
 	private Rigidbody rb;
     public KDH_GroundCheck GC;
     public float flyingForce = 10f;
+    public GameObject VFX;
+    float diveTimer = 0f;
+    float diveDuration = 2f;
+    private AudioSource audioSource;
+    public AudioClip jumpClip;
+    public AudioClip diveClip;
+    public AudioClip footClip;
+    public AudioClip LoadingfallClip;
+    public float stepInterval = 0.5f;
+    private float stepTimer = 0f;
+    float flyThreshold = 1f;
     
 
 	private float distToGround;
@@ -29,6 +40,7 @@ public class CharacterControls : MonoBehaviour {
 	private float pushForce;
 	private Vector3 pushDir;
     private float Dive;
+    private bool isDiving = false;
 	public Vector3 checkPoint;
 	private bool slide = false;
     private bool isMoving = false;
@@ -44,7 +56,7 @@ public class CharacterControls : MonoBehaviour {
     void  Start (){
 		// get the distance to ground
 		distToGround = GetComponent<Collider>().bounds.extents.y;
-
+        audioSource = GetComponent<AudioSource>();
     }
 
 	bool IsGrounded (){
@@ -104,13 +116,25 @@ public class CharacterControls : MonoBehaviour {
 				}
 
                 // Jump
-                
-				if (GC.IsGrounded() && Input.GetButton("Jump"))
+                //
+
+                if (GC.IsGrounded() && Input.GetButton("Jump") )
 				{
 					rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-                    anim.SetTrigger("Jump");
+                    anim.SetBool("Jump", true);
                     anim.SetBool("Run", false);
-				}
+                    VFX.SetActive(true);
+                    VFX.transform.position = this.transform.position - new Vector3(0,1,0) ;
+                    audioSource.PlayOneShot(jumpClip);
+
+                }
+                else
+                {
+                    anim.SetBool("Jump", false);
+
+                }
+                
+
                 //else { anim.SetBool("Idle",true); }
 			}
 			else
@@ -144,14 +168,14 @@ public class CharacterControls : MonoBehaviour {
 
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
         rb.AddForce(movement * flyingForce);
-        if(verticalInput > 0.1f)
-        {
-            anim.SetBool("Fly",true);
-        }
-        else
-        {
-            anim.SetBool("Fly", false);
-        }
+        //if(verticalInput > 0.99f)
+        //{
+        //    anim.SetBool("Fly",true);
+        //}
+        //else
+        //{
+        //    anim.SetBool("Fly", false);
+        //}
 	}
 
 
@@ -176,7 +200,7 @@ public class CharacterControls : MonoBehaviour {
 				slide = false;
 			}
 		}
-
+        stepTimer += Time.deltaTime;
         //if(Mathf.Abs(h) <1f  && Mathf.Abs(v) <1f )
         //if(h == 0  && v == 0)
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
@@ -184,11 +208,11 @@ public class CharacterControls : MonoBehaviour {
             
             anim.SetBool("Idle", true);
             anim.SetBool("Run", false);
+            stepTimer = 0;
+
             //idleTimer += Time.deltaTime;
             //if(idleTimer >= idleTimeThreshold) 
             //{
-                
-                
             //}
             //else
             //{
@@ -197,27 +221,71 @@ public class CharacterControls : MonoBehaviour {
             //    print(false);
             //}
         }
+
         else
         {
-            anim.SetBool("Run",true);
+            anim.SetBool("Run", true);
             anim.SetBool("Idle", false);
+            
+            if(stepTimer >= stepInterval)
+            {
+
+                audioSource.PlayOneShot(footClip);
+                stepTimer = 0;
+            }
+
+           
+
+            
         }
-       
-
-
-
+ 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            anim.SetTrigger("Dive");
+                if (!isDiving)
+                {
+                    isDiving = true;
+
+                    anim.SetTrigger("Dive");
+                    audioSource.PlayOneShot(diveClip);
+                }
         }
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!isDiving)
+            {
+                isDiving = true;
+
+                anim.SetTrigger("Dive");
+                audioSource.PlayOneShot(diveClip);
+            }
+        }
+
+
+
+        if (isDiving)
+        {
+           isDiving = false;
+        }
+
         //if(Input.GetKeyDown(KeyCode.Space ) && !hasJumped )
         //{
         //    anim.SetTrigger("Jump");
         //}
+
+
+        
+        //if (GC.IsGrounded())
+        //{
+
+        //    float distanceFromGround = Mathf.Abs(transform.position.y - GC.transform.position.y);
+        //    if(distanceFromGround > flyThreshold)
+        //    {
+        //        anim.SetTrigger("isFlying");
+        //    }
+        //}
         
     }
-
+    
     float CalculateJumpVerticalSpeed () {
 		// From the jump height and gravity we deduce the upwards speed 
 		// for the character to reach at the apex.
