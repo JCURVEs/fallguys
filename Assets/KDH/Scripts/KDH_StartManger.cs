@@ -7,6 +7,13 @@ public class KDH_StartManger : MonoBehaviour
 {
     public AudioClip logoClickSound;
     private AudioSource audioSource;
+    public static KDH_StartManger instance;
+    public bool isOnclick = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +28,7 @@ public class KDH_StartManger : MonoBehaviour
         if (Input.anyKeyDown)
         {
             // Start the game
+            isOnclick = true;
             audioSource.Play();
             StartCoroutine(NextScene());
         }
