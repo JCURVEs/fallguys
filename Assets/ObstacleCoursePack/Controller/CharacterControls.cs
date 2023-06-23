@@ -240,6 +240,7 @@ public class CharacterControls : MonoBehaviour {
         }
  
         if (Input.GetKeyDown(KeyCode.LeftControl))
+
         {
                 if (!isDiving)
                 {
@@ -249,7 +250,7 @@ public class CharacterControls : MonoBehaviour {
                     audioSource.PlayOneShot(diveClip);
                 }
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (!isDiving)
             {
