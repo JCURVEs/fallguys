@@ -29,6 +29,7 @@ public class CharacterControls : MonoBehaviour {
     public AudioClip LoadingfallClip;
     public float stepInterval = 0.5f;
     private float stepTimer = 0f;
+    float flyThreshold = 1f;
     
 
 	private float distToGround;
@@ -115,15 +116,21 @@ public class CharacterControls : MonoBehaviour {
 				}
 
                 // Jump
+                //
 
-				if (GC.IsGrounded() && Input.GetButton("Jump"))
+                if (GC.IsGrounded() && Input.GetButton("Jump") )
 				{
 					rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-                    anim.SetTrigger("Jump");
+                    anim.SetBool("Jump", true);
                     anim.SetBool("Run", false);
                     VFX.SetActive(true);
                     VFX.transform.position = this.transform.position - new Vector3(0,1,0) ;
                     audioSource.PlayOneShot(jumpClip);
+
+                }
+                else
+                {
+                    anim.SetBool("Jump", false);
 
                 }
                 
@@ -161,14 +168,14 @@ public class CharacterControls : MonoBehaviour {
 
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
         rb.AddForce(movement * flyingForce);
-        if(verticalInput > 0.1f)
-        {
-            anim.SetBool("Fly",true);
-        }
-        else
-        {
-            anim.SetBool("Fly", false);
-        }
+        //if(verticalInput > 0.99f)
+        //{
+        //    anim.SetBool("Fly",true);
+        //}
+        //else
+        //{
+        //    anim.SetBool("Fly", false);
+        //}
 	}
 
 
@@ -234,28 +241,47 @@ public class CharacterControls : MonoBehaviour {
  
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            if(!isDiving)
+                if (!isDiving)
+                {
+                    isDiving = true;
+
+                    anim.SetTrigger("Dive");
+                    audioSource.PlayOneShot(diveClip);
+                }
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!isDiving)
             {
                 isDiving = true;
-                diveTimer = 0f;
+
                 anim.SetTrigger("Dive");
                 audioSource.PlayOneShot(diveClip);
             }
+        }
 
-        }
-       if(isDiving)
+
+
+        if (isDiving)
         {
-            diveTimer += Time.deltaTime;
-            if(diveTimer >= diveDuration)
-            {
-                isDiving = false;
-                diveTimer = 0f;
-            }
+           isDiving = false;
         }
-        
+
         //if(Input.GetKeyDown(KeyCode.Space ) && !hasJumped )
         //{
         //    anim.SetTrigger("Jump");
+        //}
+
+
+        
+        //if (GC.IsGrounded())
+        //{
+
+        //    float distanceFromGround = Mathf.Abs(transform.position.y - GC.transform.position.y);
+        //    if(distanceFromGround > flyThreshold)
+        //    {
+        //        anim.SetTrigger("isFlying");
+        //    }
         //}
         
     }
