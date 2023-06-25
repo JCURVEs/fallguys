@@ -8,7 +8,7 @@ using TMPro;
 public class KDH_CountDownTimer : MonoBehaviour
 {
     float currTime = 0;    
-    float startTime = 3.5f;
+    float startTime = 4.5f;
     public Text countdownText;
     public TextMeshProUGUI countdownTMP;
     public GameObject player;
@@ -31,11 +31,9 @@ public class KDH_CountDownTimer : MonoBehaviour
     void Update()
     {
         currTime -= Time.deltaTime;
-        transTime += Time.deltaTime;
-       
+        transTime += Time.deltaTime;  
 
-
-        if (currTime < 0.5)
+        if (currTime < 0.5f)
         {
             countdownTMP.transform.localScale = new Vector3(2f, 2f, 2f);
             countdownTMP.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -51,13 +49,12 @@ public class KDH_CountDownTimer : MonoBehaviour
 
                 isLogoEaseing = true;
             }
-
-            
         }
         else
         {
             //Input.ResetInputAxes();
             player.transform.position = startPosition;
+            
             countdownTMP.text = currTime.ToString("0");
 
             if (transTime > spawnTime)

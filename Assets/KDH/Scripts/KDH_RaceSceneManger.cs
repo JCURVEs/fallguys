@@ -5,7 +5,7 @@ using UnityEngine;
 public class KDH_RaceSceneManger : MonoBehaviour
 {
     public AudioSource audioSource;
-    public AudioClip soundClip;
+    //public AudioClip soundClip;
 
     private void Start()
     {
@@ -16,6 +16,6 @@ public class KDH_RaceSceneManger : MonoBehaviour
     {
         yield return new WaitForSeconds(3.5f); // Wait for 3 seconds
 
-        audioSource.PlayOneShot(soundClip);
+        audioSource.Play();
     }
 }

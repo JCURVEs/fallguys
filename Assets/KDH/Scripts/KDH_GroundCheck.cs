@@ -12,8 +12,8 @@ public class KDH_GroundCheck : MonoBehaviour
     private bool isMute = true;
     public AudioClip loadingfallClip;
     public AudioSource audioSource;
-    public float fallTimer;
-    public float fallInterval;
+    float fallTimer = 0;
+    float fallInterval = 0.8f;
 
     private void Start()
     {
@@ -23,7 +23,6 @@ public class KDH_GroundCheck : MonoBehaviour
 
     private void Update()
     {
-        fallTimer += Time.deltaTime;
         // Cast a ray or sphere downwards to check for ground collision
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, groundCheckDistance, groundLayer)
@@ -35,26 +34,21 @@ public class KDH_GroundCheck : MonoBehaviour
                 isMute = true;
                 isGrounded = true;
                 animator.SetBool("isFlying", false);
-
+                fallTimer = 0;
             }
-        }
-        else if(!Physics.Raycast(transform.position, Vector3.down, out hit,10, groundLayer)
-
-            || !Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x, Vector3.down, out hit,10, groundLayer))
-        {
-            if(isMute)
-            {
-                OnPlay();
-            }
-
-            animator.SetBool("isFlying", true);
-            animator.SetBool("Jump", false);
-        }
-       
+        }        
         else
         {
             isGrounded = false;
+            fallTimer += Time.deltaTime;
 
+            if (isMute && fallTimer>fallInterval)
+            {
+                OnPlay();
+
+                animator.SetBool("isFlying", true);
+                animator.SetBool("Jump", false);
+            } 
         }
         animator.SetBool("isGrounded", isGrounded);
     }
@@ -62,7 +56,6 @@ public class KDH_GroundCheck : MonoBehaviour
     {
         audioSource.PlayOneShot(loadingfallClip);
         isMute = false;
-
     }
     public bool IsGrounded()
     {

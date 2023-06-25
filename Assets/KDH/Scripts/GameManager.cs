@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 
     public AudioClip buttonHighlightedSound;
     private AudioSource audioSource;
-
     //public static GameManager instance;
 
     //private void Awake()
@@ -54,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void OnMyStart()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(2);
     }
 
     public void OnMyQuit()
@@ -78,6 +77,6 @@ public class GameManager : MonoBehaviour
      
     public void highlightedPlaySound()
     {
-        audioSource.Play();
+        audioSource.Play();        
     }
 }
