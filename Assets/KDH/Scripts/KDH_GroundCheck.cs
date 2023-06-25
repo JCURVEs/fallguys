@@ -13,7 +13,7 @@ public class KDH_GroundCheck : MonoBehaviour
     public AudioClip loadingfallClip;
     public AudioSource audioSource;
     float fallTimer = 0;
-    float fallInterval = 0.8f;
+    float fallInterval = 0.7f;
 
     private void Start()
     {
