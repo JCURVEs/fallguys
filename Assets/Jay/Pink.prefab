@@ -168,10 +168,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   animator: {fileID: 6733461158798957048}
-  loadingfallClip: {fileID: 8300000, guid: 641899edbb9763f41844c9095761732c, type: 3}
+  loadingfallClip: {fileID: 8300000, guid: 2099847c5a9d20e47bdd095ad2d7ace9, type: 3}
   audioSource: {fileID: 0}
-  fallTimer: 0
-  fallInterval: 0
 --- !u!82 &717301574
 AudioSource:
   m_ObjectHideFlags: 0
