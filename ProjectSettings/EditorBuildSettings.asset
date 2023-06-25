@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Jay/Scenes/Scene/WaitScene.unity
     guid: 6cc79d2b13443594ba3678b8d2baa93b
   - enabled: 1
-    path: Assets/KDH/Scene/AlphpaScene 1.unity
+    path: Assets/KDH/Scene/BetaScene.unity
     guid: 8f55881ae2cf7ed438d4cadb421fc9a0
   - enabled: 1
     path: Assets/KDH/Scene/RankScene.unity
