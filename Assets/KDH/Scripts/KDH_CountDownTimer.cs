@@ -8,7 +8,7 @@ using TMPro;
 public class KDH_CountDownTimer : MonoBehaviour
 {
     float currTime = 0;    
-    float startTime = 4.5f;
+    float startTime = 4.4f;
     public Text countdownText;
     public TextMeshProUGUI countdownTMP;
     public GameObject player;
